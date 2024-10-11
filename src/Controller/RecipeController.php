@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Recipe;
 use App\Repository\RecipeRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,8 +14,25 @@ use Symfony\Component\Routing\Attribute\Route;
 class RecipeController extends AbstractController
 {
     #[Route('/recettes', name: 'recipe.index')]
-    public function index(Request $request, RecipeRepository $repository): Response{
-       $recipes = $repository->findAll();
+    public function index(Request $request, RecipeRepository $repository, EntityManagerInterface $em): Response{
+        $recipes = $repository->findWithDurationLowerThan(30);
+        /*$em->remove($recipes[0]);
+        $em->flush();*/ // pour supprimer une recette
+
+        /*$recipes = new Recipe();
+        $recipes->setTitle('Barbe à papa')
+            ->setSlug('barbe-a-papa')
+            ->setContent('Recette de la barbe à papa')
+            ->setDuration(2)
+            ->setCreatedAt(new \DateTimeImmutable())
+            ->setUpdatedAt(new \DateTimeImmutable());
+        $em->persist($recipes);
+        $em->flush();*/ // pour ajouter une recette
+
+
+       /*$recipes[0]->setTitle(' Pâtes bolognaise');
+        $em->flush();*/ // pour modifier un titre
+
         return $this->render('recipe/index.html.twig', [
             'recipes' => $recipes
         ]);
