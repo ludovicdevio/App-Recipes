@@ -1,20 +1,18 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Hello RecipeController!{% endblock %}
+{% block title "Toutes les recettes" %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <p
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    </p>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <ul>
+            {% for recipe in recipes %}
+            <li>
+                <a href="{{ url('recipe.show', {id: recipe.id, slug: recipe.slug}) }}">{{ recipe.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/ludovicdev/Bureau/tuto/src/Controller/RecipeController.php</code></li>
-        <li>Your template at <code>/home/ludovicdev/Bureau/tuto/templates/recipe/index.html.twig</code></li>
-    </ul>
-</div>
 {% endblock %}
