@@ -8,6 +8,11 @@ use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Recipe>
+ *
+ * @method Recipe|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Recipe|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Recipe[]    findAll()
+ * @method Recipe[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class RecipeRepository extends ServiceEntityRepository
 {
@@ -16,7 +21,7 @@ class RecipeRepository extends ServiceEntityRepository
         parent::__construct($registry, Recipe::class);
     }
 
-    public function findTotalDuration(): int
+    public function findTotalDuration():int
     {
         return $this->createQueryBuilder('r')
             ->select('SUM(r.duration) as total')
@@ -25,43 +30,41 @@ class RecipeRepository extends ServiceEntityRepository
     }
 
     /**
-    //     * @return Recipe[] en fonction de la suration
-    //     */
+     * @return Recipe[]
+     */
     public function findWithDurationLowerThan(int $duration): array
     {
         return $this->createQueryBuilder('r')
-            ->Where('r.duration < :duration')
+            ->where('r.duration <= :duration')
             ->orderBy('r.duration', 'ASC')
-            ->setMaxResults(15)
+            ->setMaxResults(10)
             ->setParameter('duration', $duration)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
 
+//    /**
+//     * @return Recipe[] Returns an array of Recipe objects
+//     */
+//    public function findByExampleField($value): array
+//    {
+//        return $this->createQueryBuilder('r')
+//            ->andWhere('r.exampleField = :val')
+//            ->setParameter('val', $value)
+//            ->orderBy('r.id', 'ASC')
+//            ->setMaxResults(10)
+//            ->getQuery()
+//            ->getResult()
+//        ;
+//    }
 
-    //    /**
-    //     * @return Recipe[] Returns an array of Recipe objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('r.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Recipe
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+//    public function findOneBySomeField($value): ?Recipe
+//    {
+//        return $this->createQueryBuilder('r')
+//            ->andWhere('r.exampleField = :val')
+//            ->setParameter('val', $value)
+//            ->getQuery()
+//            ->getOneOrNullResult()
+//        ;
+//    }
 }
