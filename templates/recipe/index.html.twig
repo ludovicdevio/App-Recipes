@@ -18,20 +18,20 @@
         </thead>
         <tbody>
         {% for recipe in recipes %}
-            <tr>
-                <td>
-                    <a href="{{ path('recipe.show', {id: recipe.id, slug: recipe.slug}) }}">{{ recipe.title }}</a>
-                </td>
-                <td>
-                    <div class="d-flex gap-1">
-                        <a class="btn btn-primary btn-sm" href="{{ path('recipe.edit', {id: recipe.id}) }}">Editer</a>
-                        <form action="{{ path('recipe.delete', {id: recipe.id}) }}" method="post">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-                        </form>
-                    </div>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                <a href="{{ path('recipe.show', {id: recipe.id, slug: recipe.slug}) }}">{{ recipe.title }}</a>
+            </td>
+            <td>
+                <div class="d-flex gap-1">
+                    <a class="btn btn-primary btn-sm" href="{{ path('recipe.edit', {id: recipe.id}) }}">Editer</a>
+                    <form action="{{ path('recipe.delete', {id: recipe.id}) }}" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
         {% endfor %}
         </tbody>
     </table>
