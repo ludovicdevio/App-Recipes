@@ -1,3 +1,4 @@
+bin/mailpit
 
 ###> symfony/framework-bundle ###
 /.env.local
