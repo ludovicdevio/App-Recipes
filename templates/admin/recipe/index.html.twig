@@ -1,0 +1,35 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title "Toutes les recettes" %}
+
+{% block body %}
+    <p>
+        <a class="btn btn-primary btn-sm" href="{{ path('admin.recipe.create') }}">Créer une recette</a>
+    </p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Titre</th>
+            <th style="width: 200px">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for recipe in recipes %}
+        <tr>
+            <td>
+                <a href="{{ path('admin.recipe.edit', {id: recipe.id}) }}">{{ recipe.title }}</a>
+            </td>
+            <td>
+                <div class="d-flex gap-1">
+                    <a class="btn btn-primary btn-sm" href="{{ path('admin.recipe.edit', {id: recipe.id}) }}">Editer</a>
+                    <form action="{{ path('admin.recipe.delete', {id: recipe.id}) }}" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
