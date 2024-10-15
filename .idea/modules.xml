@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Sources TP  Catégorie.iml" filepath="$PROJECT_DIR$/.idea/Sources TP  Catégorie.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Sources ORM relation ManyToOne.iml" filepath="$PROJECT_DIR$/.idea/Sources ORM relation ManyToOne.iml" />
     </modules>
   </component>
 </project>

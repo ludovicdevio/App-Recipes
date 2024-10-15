@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Category;
+use App\Entity\Recipe;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,9 +28,6 @@ class CategoryType extends AbstractType
             ->add('slug', TextType::class, [
                 'required' => false,
                 'empty_data' => ''
-            ])
-            ->add('save', SubmitType::class, [
-                'label' => 'Enregistrer'
             ])
             ->addEventListener(FormEvents::PRE_SUBMIT, $this->listenerFactory->autoSlug('name'))
             ->addEventListener(FormEvents::POST_SUBMIT, $this->listenerFactory->timestamps())
