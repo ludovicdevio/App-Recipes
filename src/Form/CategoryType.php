@@ -29,6 +29,9 @@ class CategoryType extends AbstractType
                 'required' => false,
                 'empty_data' => ''
             ])
+            ->add('save', SubmitType::class, [
+                'label' => 'Envoyer'
+            ])
             ->addEventListener(FormEvents::PRE_SUBMIT, $this->listenerFactory->autoSlug('name'))
             ->addEventListener(FormEvents::POST_SUBMIT, $this->listenerFactory->timestamps())
         ;

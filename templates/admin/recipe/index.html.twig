@@ -9,7 +9,8 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Titre</th>
+            <th>{{ knp_pagination_sortable(recipes, 'ID', 'r.id') }}</th>
+            <th>{{ knp_pagination_sortable(recipes, 'Titre', 'r.title') }}</th>
             <th>Catégorie</th>
             <th style="width: 200px">Actions</th>
         </tr>
@@ -17,6 +18,7 @@
         <tbody>
         {% for recipe in recipes %}
         <tr>
+            <td>{{ recipe.id }}</td>
             <td>
                 <a href="{{ path('admin.recipe.edit', {id: recipe.id}) }}">{{ recipe.title }}</a>
             </td>
@@ -34,4 +36,6 @@
         {% endfor %}
         </tbody>
     </table>
+
+    {{ knp_pagination_render(recipes) }}
 {% endblock %}

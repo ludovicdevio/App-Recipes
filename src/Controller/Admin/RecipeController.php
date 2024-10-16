@@ -9,23 +9,24 @@ use App\Repository\CategoryRepository;
 use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
-use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route("/admin/recettes", name: 'admin.recipe.')]
+#[IsGranted('ROLE_ADMIN')]
 class RecipeController extends AbstractController
 {
 
     #[Route('/', name: 'index')]
-    public function index(RecipeRepository $repository, CategoryRepository $categoryRepository, EntityManagerInterface $entityManager): Response
+    public function index(RecipeRepository $repository, Request $request): Response
     {
-        $recipes = $repository->findWithDurationLowerThan(20);
+        $page = $request->query->getInt('page', 1);
+        $recipes = $repository->paginateRecipes($page);
         return $this->render('admin/recipe/index.html.twig', [
-            'recipes' => $recipes
+            'recipes' => $recipes,
         ]);
     }
 
@@ -47,7 +48,7 @@ class RecipeController extends AbstractController
     }
 
     #[Route('/{id}', name: 'edit', methods: ['GET', 'POST'], requirements: ['id' => Requirement::DIGITS])]
-    public function edit(Recipe $recipe, Request $request, EntityManagerInterface $em, UploaderHelper $helper) {
+    public function edit(Recipe $recipe, Request $request, EntityManagerInterface $em) {
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
