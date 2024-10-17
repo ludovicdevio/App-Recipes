@@ -12,6 +12,7 @@
         <thead>
         <tr>
             <th>Nom</th>
+            <th>Recettes</th>
             <th style="width: 200px">Actions</th>
         </tr>
         </thead>
@@ -19,6 +20,7 @@
         {% for category in categories %}
         <tr>
             <td>{{ category.name }}</td>
+            <td>{{ category.count }}</td>
             <td>
                 <div class="d-flex gap-1">
                     <a class="btn btn-primary" href="{{ path('admin.category.edit', {id: category.id}) }}">Editer</a>
