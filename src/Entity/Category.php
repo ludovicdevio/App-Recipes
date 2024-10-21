@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
@@ -21,6 +22,7 @@ class Category
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(min: 5)]
+    #[Groups(['recipes.show'])]
     private string $name = '';
 
     #[ORM\Column(length: 255)]
@@ -97,7 +99,7 @@ class Category
 
     /**
      * @return Collection<int, Recipe>
-     */
+     **/
     public function getRecipes(): Collection
     {
         return $this->recipes;
