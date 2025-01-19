@@ -27,7 +27,7 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
         foreach ($categories as $c) {
             $category = (new Category())
                 ->setName($c)
-                ->setSlug($this->slugger->slug($c))
+                ->setSlug(strtolower($this->slugger->slug($c)))
                 ->setUpdatedAt(\DateTimeImmutable::createFromMutable($faker->dateTime()))
                 ->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTime()));
             $manager->persist($category);
@@ -38,7 +38,7 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
             $title = $faker->foodName();
             $recipe= (new Recipe())
                 ->setTitle($title)
-                ->setSlug($this->slugger->slug($title))
+                ->setSlug(strtolower($this->slugger->slug($title)))
                 ->setUpdatedAt(\DateTimeImmutable::createFromMutable($faker->dateTime()))
                 ->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTime()))
                 ->setContent($faker->paragraphs(10, true))

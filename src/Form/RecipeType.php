@@ -35,7 +35,9 @@ class RecipeType extends AbstractType
             ->add('slug', TextType::class, [
                 'required' => false,
             ])
-            ->add('thumbnailFile', FileType::class)
+            ->add('thumbnailFile', FileType::class, [
+                'required' => false
+            ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
