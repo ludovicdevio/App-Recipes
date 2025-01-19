@@ -7,5 +7,5 @@
 
     <img src="{{ vich_uploader_asset(recipe, 'thumbnailFile') }}" alt="">
 
-    {{ form(form) }}
+    {{ form(form, {action: path('admin.recipe.edit', {id: recipe.id})}) }}
 {% endblock %}
