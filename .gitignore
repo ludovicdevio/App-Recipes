@@ -26,3 +26,5 @@ bin/mailpit
 ###< symfony/asset-mapper ###
 
 /public/adminer.php
+/public/images
+/public/pdfs

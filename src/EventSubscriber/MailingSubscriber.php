@@ -28,25 +28,11 @@ class MailingSubscriber implements EventSubscriberInterface
         $this->mailer->send($mail);
     }
 
-    public function onLogin(InteractiveLoginEvent $event)
-    {
-        $user = $event->getAuthenticationToken()->getUser();
-        if (!$user instanceof User) {
-            return;
-        }
-        $mail = (new Email())
-            ->to($user->getEmail())
-            ->from('support@demo.fr')
-            ->subject('Connextion')
-            ->text('Vous vous êtes connecté');
-        $this->mailer->send($mail);
-    }
 
     public static function getSubscribedEvents(): array
     {
         return [
             ContactRequestEvent::class => 'onContactRequestEvent',
-            InteractiveLoginEvent::class => 'onLogin',
         ];
     }
 }
