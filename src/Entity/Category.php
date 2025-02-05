@@ -6,6 +6,7 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation\Translatable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -22,8 +23,9 @@ class Category
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(min: 5)]
+    #[Translatable]
     #[Groups(['recipes.show'])]
-    private string $name = '';
+    private ?string $name = '';
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(min: 5)]
@@ -51,7 +53,7 @@ class Category
 
     public function getName(): string
     {
-        return $this->name;
+        return $this->name ?? '';
     }
 
     public function setName(string $name): static

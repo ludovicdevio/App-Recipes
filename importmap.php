@@ -25,7 +25,7 @@ return [
         'version' => '3.2.2',
     ],
     '@hotwired/turbo' => [
-        'version' => '8.0.2',
+        'version' => '7.3.0',
     ],
     'tom-select' => [
         'version' => '2.3.1',
