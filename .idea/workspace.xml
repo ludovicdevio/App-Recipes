@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="910c74d7-b2d0-4525-8f19-fa144c3f1873" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Makerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -240,7 +239,7 @@
       <workItem from="1738723157245" duration="1461000" />
       <workItem from="1738724850234" duration="8762000" />
       <workItem from="1738936212491" duration="639000" />
-      <workItem from="1738983610524" duration="527000" />
+      <workItem from="1738983610524" duration="1069000" />
     </task>
     <servers />
   </component>
